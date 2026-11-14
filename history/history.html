@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <script src="../lib/theme-init.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your captures · Open Page Capture</title>
+  <link rel="stylesheet" href="../css/ui.css">
+  <link rel="stylesheet" href="history.css">
+</head>
+<body>
+  <header class="bar">
+    <div class="lead">
+      <h1>Your captures</h1>
+      <span class="muted" id="count"></span>
+    </div>
+    <div class="tools">
+      <label class="search">
+        <span data-icon="search" data-size="16"></span>
+        <input id="q" type="search" placeholder="Search title or address" aria-label="Search captures" autocomplete="off">
+      </label>
+      <button class="btn" id="selectBtn"><span data-icon="check" data-size="16"></span><span id="selectLabel">Select</span></button>
+      <a class="icon-btn" href="../batch/batch.html" title="Batch capture" aria-label="Batch capture"><span data-icon="layers" data-size="19"></span></a>
+      <a class="icon-btn" href="../verify/verify.html" title="Verify evidence" aria-label="Verify evidence"><span data-icon="shield" data-size="19"></span></a>
+      <span data-theme-toggle></span>
+      <button class="icon-btn" id="settingsBtn" title="Settings" aria-label="Settings"><span data-icon="settings" data-size="19"></span></button>
+    </div>
+  </header>
+
+  <div class="bulk hidden" id="bulk">
+    <b id="bulkCount">0 selected</b>
+    <button class="btn sm" id="bulkAll">Select all</button>
+    <span class="grow"></span>
+    <button class="btn sm" id="bulkFav"><span data-icon="star" data-size="15"></span>Favourite</button>
+    <button class="btn sm" id="bulkDl"><span data-icon="download" data-size="15"></span><span id="bulkDlLabel">Download</span></button>
+    <button class="btn sm danger" id="bulkDel"><span data-icon="trash" data-size="15"></span>Delete</button>
+    <button class="btn sm" id="bulkDone">Done</button>
+  </div>
+
+  <main>
+    <section id="favSec" class="hidden">
+      <button class="sec-head" id="favHead" aria-expanded="true"><span class="chev" data-icon="chevronDown" data-size="16"></span><span>Favourites</span><span class="muted" id="favCount"></span></button>
+      <div class="grid" id="favGrid"></div>
+    </section>
+    <section id="allSec">
+      <div class="sec-head static"><span>All</span><span class="muted" id="allCount"></span></div>
+      <div class="grid" id="allGrid"></div>
+    </section>
+    <div class="empty hidden" id="empty">
+      <h2>Nothing here yet</h2>
+      <p class="muted">Captures you take show up here. Star the ones you want to keep, the rest delete themselves on a timer.</p>
+    </div>
+  </main>
+
+  <footer class="foot muted" id="foot"></footer>
+  <div class="pill hidden" id="pill"><span class="spinner"></span><span id="pillText"></span></div>
+  <script type="module" src="history.js"></script>
+</body>
+</html>

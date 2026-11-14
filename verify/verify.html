@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <script src="../lib/theme-init.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Verify evidence · Open Page Capture</title>
+  <link rel="stylesheet" href="../css/ui.css">
+  <link rel="stylesheet" href="verify.css">
+</head>
+<body>
+  <header class="bar">
+    <span class="brand" id="brand"></span>
+    <h1>Verify evidence</h1>
+    <span data-theme-toggle></span>
+    <a class="btn" href="../history/history.html"><span data-icon="history" data-size="16"></span>Your captures</a>
+  </header>
+  <main>
+    <p class="lead">Drop a PNG exported with Evidence mode on. The checksum of its pixels is recomputed here, on this device, and compared with the one recorded when it was saved.</p>
+    <label class="drop" id="drop" tabindex="0">
+      <span data-icon="upload" data-size="26"></span>
+      <b>Drop a PNG here or click to choose</b>
+      <span class="muted">Nothing is uploaded</span>
+      <input type="file" id="file" accept="image/png,.png" hidden>
+    </label>
+    <section id="result" class="hidden" aria-live="polite"></section>
+  </main>
+  <script type="module" src="verify.js"></script>
+</body>
+</html>

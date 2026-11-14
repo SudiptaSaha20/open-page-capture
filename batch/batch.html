@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <script src="../lib/theme-init.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Batch capture · Open Page Capture</title>
+  <link rel="stylesheet" href="../css/ui.css">
+  <link rel="stylesheet" href="batch.css">
+</head>
+<body>
+  <header class="bar">
+    <span class="brand" id="brand"></span>
+    <h1>Batch capture</h1>
+    <span data-theme-toggle></span>
+    <a class="btn" href="../history/history.html"><span data-icon="history" data-size="16"></span>Your captures</a>
+  </header>
+  <main>
+    <section class="panel">
+      <label for="urls"><b>Addresses</b><span class="muted"> one per line</span></label>
+      <textarea id="urls" class="input" rows="8" spellcheck="false" placeholder="https://example.com&#10;https://example.org/pricing"></textarea>
+      <div class="opts">
+        <label class="opt"><span>After each capture</span>
+          <select id="out" class="select">
+            <option value="none">Save to Your captures only</option>
+            <option value="png">Also download PNG</option>
+            <option value="jpeg">Also download JPEG</option>
+            <option value="pdf">Also download PDF</option>
+          </select>
+        </label>
+        <span class="grow"></span>
+        <button class="btn" id="stopBtn" hidden><span data-icon="x" data-size="16"></span>Stop</button>
+        <button class="btn primary" id="startBtn"><span data-icon="play" data-size="16"></span>Start batch</button>
+      </div>
+      <p class="muted note" id="note">Pages open one at a time in a separate browser window, so keep that window visible until the batch finishes. The first run asks for access to the sites you list.</p>
+      <p class="error hidden" id="err" role="alert"></p>
+    </section>
+    <section id="results" class="hidden">
+      <h2>Progress <span class="muted" id="summary"></span></h2>
+      <ul id="list" class="list"></ul>
+    </section>
+  </main>
+  <script type="module" src="batch.js"></script>
+</body>
+</html>

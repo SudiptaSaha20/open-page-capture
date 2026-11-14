@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <script src="../lib/theme-init.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Edit · Open Page Capture</title>
+  <link rel="stylesheet" href="../css/ui.css">
+  <link rel="stylesheet" href="editor.css">
+</head>
+<body>
+  <header class="bar">
+    <div class="grp">
+      <button class="btn" id="backBtn"><span data-icon="chevronLeft" data-size="16"></span>Back</button>
+      <span class="title" id="title"></span>
+    </div>
+    <div class="grp">
+      <button class="icon-btn" id="undoBtn" title="Undo (Ctrl+Z)" aria-label="Undo"><span data-icon="undo" data-size="19"></span></button>
+      <button class="icon-btn" id="redoBtn" title="Redo (Ctrl+Y)" aria-label="Redo"><span data-icon="redo" data-size="19"></span></button>
+      <span class="vsep"></span>
+      <button class="icon-btn" id="zoomOut" aria-label="Zoom out"><span data-icon="minus" data-size="17"></span></button>
+      <button id="zoomPct" class="zpct" title="Reset to 100%">100%</button>
+      <button class="icon-btn" id="zoomIn" aria-label="Zoom in"><span data-icon="plus" data-size="17"></span></button>
+      <button class="icon-btn" id="zoomFit" aria-label="Fit to width" title="Fit to width"><span data-icon="fit" data-size="17"></span></button>
+    </div>
+    <div class="grp">
+      <span data-theme-toggle></span>
+      <span class="saved" id="savedState">All changes saved</span>
+      <button class="btn" id="saveBtn"><span data-icon="check" data-size="16"></span>Save</button>
+      <button class="btn primary" id="doneBtn">Done</button>
+    </div>
+  </header>
+
+  <div class="work">
+    <aside class="tools" id="tools" aria-label="Tools">
+      <button data-tool="select" title="Select and move (V)"><span data-icon="pointer"></span></button>
+      <button data-tool="pen" title="Pen (P)"><span data-icon="pen"></span></button>
+      <button data-tool="hl" title="Highlighter (H)"><span data-icon="highlighter"></span></button>
+      <button data-tool="line" title="Line (L)"><span data-icon="line"></span></button>
+      <button data-tool="arrow" title="Arrow (A)"><span data-icon="arrow"></span></button>
+      <button data-tool="rect" title="Rectangle (R)"><span data-icon="square"></span></button>
+      <button data-tool="ellipse" title="Ellipse (O)"><span data-icon="ellipse"></span></button>
+      <button data-tool="text" title="Text (T)"><span data-icon="text"></span></button>
+      <button data-tool="pix" title="Blur or pixelate (B)"><span data-icon="pixelate"></span></button>
+      <button data-tool="crop" title="Crop (C)"><span data-icon="crop"></span></button>
+    </aside>
+
+    <section class="wrap" id="wrap">
+      <div class="stage" id="stage">
+        <canvas id="cv"></canvas>
+        <textarea id="textInput" class="text-input hidden" spellcheck="false" aria-label="Annotation text"></textarea>
+      </div>
+    </section>
+
+    <aside class="props" id="props" aria-label="Tool options">
+      <h3 id="propTitle">Select</h3>
+      <div class="field" id="fColor"><label>Colour</label>
+        <div class="swatches" id="swatches"></div>
+        <input type="color" id="colorInput" aria-label="Custom colour">
+      </div>
+      <div class="field" id="fSize"><label id="sizeLabel">Thickness</label>
+        <div class="range"><input type="range" id="size" min="1" max="24" value="4"><output id="sizeOut">4</output></div>
+      </div>
+      <div class="field" id="fFill"><label class="inline"><span>Filled shape</span><span class="switch"><input type="checkbox" id="fill"><span></span></span></label></div>
+      <div class="field" id="fPix"><label>Effect</label>
+        <div class="segmented"><button type="button" data-mode="pixelate" aria-pressed="true">Pixelate</button><button type="button" data-mode="blur" aria-pressed="false">Blur</button></div>
+        <p class="muted hint">Pixelate is the safer choice for hiding text.</p>
+      </div>
+      <div class="field" id="fCrop">
+        <label>Crop size</label>
+        <p class="cropinfo" id="cropInfo">0 × 0 px</p>
+        <div class="cropbtns">
+          <button class="btn sm primary" id="cropApply">Apply crop</button>
+          <button class="btn sm" id="cropReset">Reset</button>
+          <button class="btn sm" id="cropCancel">Cancel</button>
+        </div>
+      </div>
+      <div class="field" id="fDelete"><button class="btn danger sm" id="deleteObj"><span data-icon="trash" data-size="15"></span>Delete selected</button></div>
+      <p class="muted hint" id="toolHint"></p>
+    </aside>
+  </div>
+  <script type="module" src="editor.js"></script>
+</body>
+</html>

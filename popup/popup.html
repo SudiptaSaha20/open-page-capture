@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <script src="../lib/theme-init.js"></script>
+  <title>Open Page Capture</title>
+  <link rel="stylesheet" href="../css/ui.css">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="top">
+    <span class="brand" id="brand"></span>
+    <span class="top-actions"><span data-theme-toggle data-size="18"></span><button class="icon-btn" id="openSettings" title="Settings" aria-label="Settings"><span data-icon="settings"></span></button></span>
+  </header>
+
+  <main id="idle">
+    <button class="row" data-mode="visible">
+      <span class="tile"><span data-icon="viewport" data-size="20"></span></span>
+      <span class="txt"><b>Visible area</b><small>What you see right now</small></span>
+      <span class="keys" data-cmd="capture-visible"></span>
+    </button>
+    <button class="row" data-mode="full">
+      <span class="tile"><span data-icon="fullpage" data-size="20"></span></span>
+      <span class="txt"><b>Full page</b><small>Scrolls and stitches the whole page</small></span>
+      <span class="keys" data-cmd="capture-full"></span>
+    </button>
+    <button class="row" data-mode="select">
+      <span class="tile"><span data-icon="select" data-size="20"></span></span>
+      <span class="txt"><b>Selected area</b><small>Drag any region, scroll while you drag</small></span>
+      <span class="keys" data-cmd="capture-select"></span>
+    </button>
+    <div class="rule"></div>
+    <button class="row" id="openHistory">
+      <span class="tile"><span data-icon="history" data-size="20"></span></span>
+      <span class="txt"><b>History</b><small id="histCount">Your saved captures</small></span>
+      <span class="keys" data-cmd="open-history"></span>
+      <span class="go" data-icon="chevronRight" data-size="16"></span>
+    </button>
+    <div class="foot">
+      <button class="link" id="openBatch"><span data-icon="layers" data-size="15"></span>Batch capture</button>
+      <button class="link" id="openVerify"><span data-icon="shield" data-size="15"></span>Verify evidence</button>
+    </div>
+    <p class="error hidden" id="err" role="alert"></p>
+  </main>
+
+  <main id="running" class="hidden">
+    <div class="state">
+      <div class="state-top"><b id="stateTitle">Capturing</b><span id="stateCount" class="muted"></span></div>
+      <div class="bar"><i id="barFill"></i></div>
+      <p id="stateMsg" class="muted"></p>
+    </div>
+    <div class="actions">
+      <button class="btn" id="pauseBtn"><span data-icon="pause" data-size="16"></span><span id="pauseLabel">Pause</span></button>
+      <button class="btn danger" id="stopBtn"><span data-icon="x" data-size="16"></span>Stop</button>
+    </div>
+    <p class="muted small">You can close this window. The capture keeps going and opens when it is done.</p>
+  </main>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

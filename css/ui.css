@@ -1,0 +1,178 @@
+/* Shared design tokens + components. Flat surfaces, hairline borders, no blur/glass effects. */
+:root {
+  --bg: #f4f5f7;
+  --panel: #ffffff;
+  --panel-2: #eef0f3;
+  --ink: #15181e;
+  --ink-2: #4a505c;
+  --ink-3: #7b8290;
+  --line: #e1e4ea;
+  --line-strong: #cdd2db;
+  --accent: #2f5bff;
+  --accent-ink: #ffffff;
+  --accent-soft: #e8edff;
+  --star: #f2a516;
+  --danger: #d6342c;
+  --ok: #1a8f4c;
+  --r-sm: 6px;
+  --r: 9px;
+  --r-lg: 14px;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+/* Theme: follows the system unless the user picks Light or Dark (data-theme on <html>). */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1013;
+    --panel: #16191e;
+    --panel-2: #1e2229;
+    --ink: #eceef2;
+    --ink-2: #b4bac6;
+    --ink-3: #828999;
+    --line: #272c35;
+    --line-strong: #3a4150;
+    --accent: #7a98ff;
+    --accent-ink: #0b1026;
+    --accent-soft: #1d2540;
+    --star: #f5b43a;
+    --danger: #ff6b62;
+    --ok: #4cc77f;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1013;
+  --panel: #16191e;
+  --panel-2: #1e2229;
+  --ink: #eceef2;
+  --ink-2: #b4bac6;
+  --ink-3: #828999;
+  --line: #272c35;
+  --line-strong: #3a4150;
+  --accent: #7a98ff;
+  --accent-ink: #0b1026;
+  --accent-soft: #1d2540;
+  --star: #f5b43a;
+  --danger: #ff6b62;
+  --ok: #4cc77f;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font: 14px/1.45 var(--font);
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.ic { display: block; flex: none; }
+.hidden { display: none !important; }
+.muted { color: var(--ink-3); }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+  height: 34px; padding: 0 14px; border-radius: var(--r);
+  border: 1px solid var(--line-strong); background: var(--panel); color: var(--ink);
+  font-weight: 550; white-space: nowrap;
+}
+.btn:hover { background: var(--panel-2); }
+.btn:disabled { opacity: .5; cursor: default; }
+.btn.primary { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.btn.primary:hover { opacity: .88; background: var(--ink); }
+.btn.accent { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.btn.accent:hover { opacity: .9; background: var(--accent); }
+.btn.danger { color: var(--danger); }
+.btn.sm { height: 28px; padding: 0 10px; font-size: 13px; }
+.icon-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 34px; height: 34px; border-radius: var(--r); border: 1px solid transparent;
+  background: transparent; color: var(--ink-2);
+}
+.icon-btn:hover { background: var(--panel-2); color: var(--ink); }
+.icon-btn.on { color: var(--star); }
+.icon-btn.on svg { fill: currentColor; }
+.icon-btn.active { background: var(--accent-soft); color: var(--accent); }
+.icon-btn:disabled { opacity: .4; cursor: default; }
+
+/* Split button: a main action and a format caret that read as one control */
+.split { position: relative; display: inline-flex; }
+.split .seg {
+  display: inline-flex; align-items: center; gap: 7px; height: 34px; padding: 0 14px;
+  border: 1px solid var(--ink); background: var(--ink); color: var(--bg); font-weight: 600;
+}
+.split .seg:hover { opacity: .9; }
+.split .seg:disabled { opacity: .5; cursor: default; }
+.split .main { border-radius: var(--r) 0 0 var(--r); }
+.split .caret { border-radius: 0 var(--r) var(--r) 0; padding: 0 9px; border-left-color: color-mix(in srgb, var(--bg) 30%, transparent); }
+.menu {
+  position: absolute; z-index: 30; min-width: 170px; padding: 5px;
+  background: var(--panel); border: 1px solid var(--line-strong); border-radius: var(--r);
+  box-shadow: 0 6px 20px rgba(10, 14, 24, .14);
+}
+.menu button {
+  display: flex; width: 100%; align-items: center; gap: 8px; text-align: left;
+  padding: 8px 10px; border: 0; border-radius: var(--r-sm); background: transparent; font-size: 14px;
+}
+.menu button:hover, .menu button:focus-visible { background: var(--panel-2); }
+.menu .sep { height: 1px; background: var(--line); margin: 5px 0; }
+
+/* Form controls */
+.switch { position: relative; width: 38px; height: 22px; flex: none; }
+.switch input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
+.switch span { position: absolute; inset: 0; border-radius: 999px; background: var(--line-strong); transition: background .15s; pointer-events: none; }
+.switch span::after { content: ""; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%; background: #fff; transition: transform .15s; }
+.switch input:checked + span { background: var(--accent); }
+.switch input:checked + span::after { transform: translateX(16px); }
+.switch input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 2px; }
+.select, .input {
+  height: 34px; padding: 0 10px; border-radius: var(--r); border: 1px solid var(--line-strong);
+  background: var(--panel); min-width: 0;
+}
+.input:focus, .select:focus { outline: 2px solid var(--accent); outline-offset: -1px; border-color: transparent; }
+.segmented { display: inline-flex; padding: 3px; gap: 2px; border-radius: var(--r); background: var(--panel-2); border: 1px solid var(--line); }
+.segmented button { height: 28px; padding: 0 13px; border: 0; border-radius: 6px; background: transparent; color: var(--ink-2); font-weight: 550; }
+.segmented button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+
+/* Chips + badges */
+.chip {
+  display: inline-flex; align-items: center; gap: 5px; height: 24px; padding: 0 9px; border-radius: 999px;
+  background: var(--panel-2); color: var(--ink-2); font-size: 12px; font-weight: 550; white-space: nowrap;
+}
+.chip.fav { background: color-mix(in srgb, var(--star) 18%, transparent); color: var(--ink); }
+.chip.warn { background: color-mix(in srgb, var(--danger) 14%, transparent); color: var(--danger); }
+
+/* Toasts */
+.toasts { position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%); z-index: 100; display: flex; flex-direction: column; gap: 8px; align-items: center; pointer-events: none; }
+.toast {
+  background: var(--ink); color: var(--bg); padding: 9px 14px; border-radius: var(--r);
+  font-size: 13px; font-weight: 500; max-width: min(560px, 90vw); transition: opacity .2s;
+}
+.toast.error { background: var(--danger); color: #fff; }
+.toast.out { opacity: 0; }
+
+.spinner {
+  width: 15px; height: 15px; border-radius: 50%; border: 2px solid currentColor; border-right-color: transparent;
+  animation: spin .7s linear infinite; flex: none;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .spinner { animation-duration: 2s; } .switch span, .switch span::after { transition: none; } }
+
+.brand { display: inline-flex; align-items: center; gap: 9px; font-weight: 650; letter-spacing: -.01em; color: var(--ink); }
+.dialog-back { position: fixed; inset: 0; background: rgba(8, 10, 16, .5); z-index: 60; display: grid; place-items: center; }
+.dialog { width: min(420px, 92vw); background: var(--panel); border: 1px solid var(--line-strong); border-radius: var(--r-lg); padding: 20px; }
+.dialog h3 { margin: 0 0 6px; font-size: 16px; }
+.dialog p { margin: 0 0 16px; color: var(--ink-2); }
+.dialog .row { display: flex; gap: 8px; justify-content: flex-end; }
+
+kbd {
+  display: inline-block; min-width: 20px; padding: 1px 6px; border: 1px solid var(--line-strong); border-bottom-width: 2px;
+  border-radius: 5px; background: var(--panel-2); color: var(--ink-2); font: 600 11px/1.5 var(--font); text-align: center;
+}
+.menu button kbd { margin-left: auto; }

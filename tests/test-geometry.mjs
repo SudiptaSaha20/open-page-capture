@@ -1,0 +1,21 @@
+import * as g from '../editor/geometry.js';
+let fails = 0; const ok = (c, m) => { console.log(c ? 'ok  ' : 'FAIL', m); if (!c) fails++; };
+const full = { x: 0, y: 0, w: 1000, h: 800 };
+ok(g.cropHit(full, 2, 3, 12) === 'nw', 'corner of a full-image frame is reachable from inside the canvas');
+ok(g.cropHit(full, 998, 799, 12) === 'se', 'opposite corner');
+ok(g.cropHit(full, 500, 4, 12) === 'n' && g.cropHit(full, 5, 400, 12) === 'w', 'edges');
+ok(g.cropHit(full, 500, 400, 12) === 'move', 'inside moves');
+ok(g.cropHit({ x: 100, y: 100, w: 300, h: 200 }, 50, 50, 12) === null, 'outside does nothing');
+// drag the left edge inwards, then the bottom-right corner
+let r = g.cropDrag('w', full, { x: 0, y: 0 }, 150, 300, 1000, 800);
+ok(r.x === 150 && r.w === 850 && r.y === 0 && r.h === 800, 'left edge inwards keeps the right edge');
+r = g.cropDrag('se', r, { x: 0, y: 0 }, 900, 600, 1000, 800);
+ok(r.x === 150 && r.w === 750 && r.h === 600, 'bottom-right corner inwards');
+r = g.cropDrag('e', r, { x: 0, y: 0 }, 100, 0, 1000, 800);
+ok(r.w === 8 && r.x === 150, 'cannot invert: stops at minimum size');
+r = g.cropDrag('nw', full, { x: 0, y: 0 }, -50, -50, 1000, 800);
+ok(r.x === 0 && r.y === 0, 'cannot drag outside the image');
+r = g.cropDrag('move', { x: 100, y: 100, w: 300, h: 200 }, { x: 150, y: 150 }, 5000, 5000, 1000, 800);
+ok(r.x === 700 && r.y === 600 && r.w === 300 && r.h === 200, 'move is clamped to the image');
+console.log(fails ? fails + ' FAILED' : 'crop geometry OK');
+process.exit(fails ? 1 : 0);

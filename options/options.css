@@ -1,0 +1,37 @@
+.bar { display: flex; align-items: center; gap: 18px; padding: 14px 28px; background: var(--panel); border-bottom: 1px solid var(--line); }
+.bar h1 { font-size: 16px; margin: 0; flex: 1; color: var(--ink-2); font-weight: 600; }
+.layout { display: grid; grid-template-columns: 210px minmax(0, 760px); gap: 40px; justify-content: center; padding: 30px 24px 80px; }
+nav { position: sticky; top: 24px; align-self: start; display: flex; flex-direction: column; gap: 2px; }
+nav a { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: var(--r); color: var(--ink-2); font-weight: 550; }
+nav a:hover { background: var(--panel-2); text-decoration: none; color: var(--ink); }
+nav a.on { background: var(--panel); color: var(--ink); border: 1px solid var(--line-strong); padding: 8px 11px; }
+.small { font-size: 12px; margin: 14px 12px 0; }
+section { margin-bottom: 38px; scroll-margin-top: 24px; }
+section > h2 { font-size: 20px; letter-spacing: -.015em; margin: 0 0 2px; }
+section > p.sub { margin: 0 0 14px; color: var(--ink-3); }
+.group { background: var(--panel); border: 1px solid var(--line); border-radius: var(--r-lg); }
+.setting { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 16px 20px; }
+.setting + .setting { border-top: 1px solid var(--line); }
+.setting .copy { min-width: 0; }
+.setting .copy b { display: block; font-weight: 600; }
+.setting .copy span { display: block; color: var(--ink-3); font-size: 13px; margin-top: 2px; }
+.setting .copy .note { color: var(--ink-2); }
+.setting .ctl { flex: none; display: flex; align-items: center; gap: 8px; }
+.paper { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; padding: 16px 20px; }
+.paper button { text-align: left; padding: 12px; border: 1px solid var(--line-strong); border-radius: var(--r); background: var(--panel); display: flex; flex-direction: column; gap: 2px; }
+.paper button b { font-weight: 600; }
+.paper button span { font-size: 12px; color: var(--ink-3); }
+.paper button[aria-pressed="true"] { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+.input.wide { width: 240px; }
+.input.mid { width: 150px; }
+@media (max-width: 800px) { .layout { grid-template-columns: 1fr; } nav { position: static; flex-direction: row; flex-wrap: wrap; } .paper { grid-template-columns: repeat(2, 1fr); } .setting { flex-wrap: wrap; } }
+
+.sc-head { font-size: 14px; margin: 22px 0 8px; color: var(--ink-2); }
+.sc-head small { color: var(--ink-3); font-weight: 400; margin-left: 8px; }
+.sc-note { margin: 0 0 12px; color: var(--ink-3); font-size: 13px; }
+.keycap { display: inline-flex; align-items: center; gap: 4px; min-width: 96px; justify-content: center; height: 32px; padding: 0 10px; border: 1px solid var(--line-strong); border-radius: var(--r); background: var(--panel); color: var(--ink-3); font-size: 13px; }
+.keycap:hover { border-color: var(--ink-3); }
+.keycap.rec { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+.linkbtn { border: 0; background: none; color: var(--ink-3); font-size: 13px; padding: 4px 6px; }
+.linkbtn:hover { color: var(--ink); text-decoration: underline; }
+.setting.slim { padding: 10px 20px; }

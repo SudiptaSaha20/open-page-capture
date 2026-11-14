@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <script src="../lib/theme-init.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Capture · Open Page Capture</title>
+  <link rel="stylesheet" href="../css/ui.css">
+  <link rel="stylesheet" href="viewer.css">
+</head>
+<body>
+  <header class="bar">
+    <div class="id">
+      <span class="brand" id="brand"></span>
+      <span class="title" id="title"></span>
+      <span class="muted nowrap" id="meta"></span>
+    </div>
+    <div class="tools">
+      <span class="chip hidden" id="evidenceChip" title="Exports get a URL, time and checksum band"><span data-icon="shield" data-size="14"></span>Evidence on</span>
+      <span class="chip" id="expiry"></span>
+      <button class="btn" id="editBtn"><span data-icon="edit" data-size="16"></span>Edit</button>
+      <button class="btn" id="copyBtn"><span data-icon="copy" data-size="16"></span>Copy</button>
+      <button class="btn" id="printBtn"><span data-icon="print" data-size="16"></span>Print</button>
+      <div class="split">
+        <button class="seg main" id="saveBtn"><span data-icon="download" data-size="16"></span><span id="saveLabel">Save PNG</span></button>
+        <button class="seg caret" id="saveMenuBtn" aria-haspopup="menu" aria-expanded="false" aria-label="Choose format"><span data-icon="chevronDown" data-size="16"></span></button>
+        <div class="menu hidden" id="saveMenu" role="menu">
+          <button role="menuitem" data-fmt="png">Save PNG</button>
+          <button role="menuitem" data-fmt="jpeg">Save JPEG</button>
+          <button role="menuitem" data-fmt="gif">Save GIF</button>
+          <button role="menuitem" data-fmt="pdf">Save PDF</button>
+        </div>
+      </div>
+      <span class="vsep"></span>
+      <button class="icon-btn" id="starBtn" title="Favourite (keeps it permanently)" aria-label="Favourite"><span data-icon="star" data-size="19"></span></button>
+      <button class="icon-btn" id="historyBtn" title="History" aria-label="History"><span data-icon="history" data-size="19"></span></button>
+      <span data-theme-toggle></span>
+      <button class="icon-btn" id="settingsBtn" title="Settings" aria-label="Settings"><span data-icon="settings" data-size="19"></span></button>
+      <button class="icon-btn" id="deleteBtn" title="Delete" aria-label="Delete"><span data-icon="trash" data-size="19"></span></button>
+    </div>
+  </header>
+
+  <main id="stage" class="stage">
+    <img id="img" alt="Captured page" draggable="false">
+    <div id="missing" class="missing hidden">
+      <h2>This capture isn't available</h2>
+      <p class="muted">It may have expired or been deleted. Star captures you want to keep.</p>
+      <a class="btn" href="../history/history.html">Open history</a>
+    </div>
+  </main>
+
+  <div class="zoom" id="zoom" role="group" aria-label="Zoom">
+    <button class="icon-btn" id="zoomOut" aria-label="Zoom out" title="Zoom out (-)"><span data-icon="minus" data-size="18"></span></button>
+    <button class="zpct" id="zoomPct" title="Reset to 100%">100%</button>
+    <button class="icon-btn" id="zoomIn" aria-label="Zoom in" title="Zoom in (+)"><span data-icon="plus" data-size="18"></span></button>
+    <span class="zsep"></span>
+    <button class="icon-btn" id="zoomFit" aria-label="Fit to width" title="Fit to width (0)"><span data-icon="fit" data-size="18"></span></button>
+  </div>
+
+  <div class="pill hidden" id="pill"><span class="spinner"></span><span id="pillText"></span></div>
+  <img id="printImg" alt="">
+  <script type="module" src="viewer.js"></script>
+</body>
+</html>
