@@ -1,0 +1,32 @@
+name: Release
+
+# Push a tag like v1.0.0 and this builds the extension zip and publishes a GitHub release.
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Tag must match manifest version
+        run: |
+          v=$(python3 -c "import json; print(json.load(open('manifest.json'))['version'])")
+          if [ "v$v" != "$GITHUB_REF_NAME" ]; then
+            echo "Tag $GITHUB_REF_NAME does not match manifest.json version $v"; exit 1
+          fi
+
+      - name: Build extension zip
+        run: git archive --format=zip -o "open-page-capture-${GITHUB_REF_NAME}.zip" HEAD
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" "open-page-capture-${GITHUB_REF_NAME}.zip" \
+            --title "Open Page Capture ${GITHUB_REF_NAME}" --generate-notes
